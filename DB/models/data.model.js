@@ -3,15 +3,19 @@ import { Schema, model } from "mongoose";
 const dataSchema = new Schema({
     number1:{
         type:Number,
-        required:true,
+        
     },
     number2:{
         type:Number,
-        required:true,
+        
+    },
+    number3:{
+        type:Number,
+        unique:true
     },
     PDF:{
         secure_url : {type:String,required:true},
-        public_id : {type:String,required:true,unique:true}
+        public_id : {type:String,unique:true}
     },
     Date:{
         type:Date,
@@ -19,7 +23,7 @@ const dataSchema = new Schema({
     },
     folderId:{
         type:String,
-        required:true,
+        
         unique:true
     }
 },{

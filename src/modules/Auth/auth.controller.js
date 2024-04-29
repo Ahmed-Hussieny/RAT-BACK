@@ -41,12 +41,12 @@ export const SignUp = async(req,res,next)=>{
 // & ================================ Sign In ================================ &
 export const signIn = async (req, res, next) => {
 
-    const { mobileNumber, email, password } = req.body
+    const {  email, password } = req.body
 
     console.log(req.body);
     // console.log(req);
     const user = await User.findOne({
-        $or: [{ email }, { mobileNumber }]
+        $or: [{ email }]
     })
 
     // ? if user not exist
@@ -59,6 +59,7 @@ export const signIn = async (req, res, next) => {
 
     // * check that password is correct
     const isPasswordMatched = bcrypt.compareSync(password, user.password)
+    console.log(isPasswordMatched);
     if (!isPasswordMatched) return next(new Error("Wrong password", { cause: 404 }))
 
 
@@ -67,7 +68,7 @@ export const signIn = async (req, res, next) => {
     const Token = Jwt.sign({ id: user._id, email: user.email }, process.env.ACCESSTOKEN)
 
     // ^ make user online
-    const updateStatusOfUser = await User.findOneAndUpdate({ $or: [{ email }, { mobileNumber }] }, { status: 'online' }, { new: true })
+    const updateStatusOfUser = await User.findOneAndUpdate({ email  }, { status: 'online' }, { new: true })
 
     if (!updateStatusOfUser) {
         return res.status(201).json({
