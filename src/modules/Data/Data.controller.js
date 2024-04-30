@@ -85,5 +85,9 @@ export const getDataByID = async(req,res,next) => {
 export const deleteData = async(req,res,next) => {
     const {id} = req.params
     const data = await Data.findOneAndDelete({number3:id})
+
+    await cloudinaryConnection().api.delete_resources_by_prefix(`${process.env.MAIN_FOLDER}/PDF/${data.folderId}`);
+            await cloudinaryConnection().api.delete_folder(`${process.env.MAIN_FOLDER}/PDF/${data.folderId}`);
+            
     return res.status(200).json({status:200,Data:data})
 }
