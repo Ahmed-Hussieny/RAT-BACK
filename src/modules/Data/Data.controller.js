@@ -79,3 +79,11 @@ export const getDataByID = async(req,res,next) => {
     const data = await Data.findOne({number3:id})
     return res.status(200).json({status:200,Data:data})
 }
+
+
+//& ===================delete Data===================
+export const deleteData = async(req,res,next) => {
+    const {id} = req.params
+    const data = await Data.findOneAndDelete({number3:id})
+    return res.status(200).json({status:200,Data:data})
+}

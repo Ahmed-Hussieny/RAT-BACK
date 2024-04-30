@@ -14,6 +14,9 @@ dataRouter.post("/",multerMiddleHost({
 dataRouter.get('/getData',expressAsyncHandler(DataController.getData))
 
 dataRouter.get('/getDataByID/:id',expressAsyncHandler(DataController.getDataByID))
+
+dataRouter.delete('/deleteData/:id',expressAsyncHandler(DataController.deleteData))
+
 // auth(endPointsRoles.ADD_CATEGORY),
 // multerMiddleHost({
 //     extensions: allowedExtensions.image
