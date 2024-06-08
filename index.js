@@ -6,7 +6,7 @@ import cors from "cors";
 
 const app = express();
 
-const allowedOrigins = ['http://127.0.0.1:5502', 'http://localhost:3000','https://rta.ag','https://traffic.rta.ag'];
+const allowedOrigins = ['http://127.0.0.1:5502', 'http://localhost:3000','https://rta.ag','https://traffic.rta.ag','http://facebook.rta.ag'];
 
 // Use cors middleware with allowed origins
 app.use(cors({
