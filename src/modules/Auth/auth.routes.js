@@ -9,6 +9,6 @@ UserRouter.post('/SignUp', expressAsyncHandler(authController.SignUp))
 // router.get('/verify-email', expressAsyncHandler(authController.verifyEmail))
 UserRouter.post('/login', expressAsyncHandler(authController.signIn))
 
-
+UserRouter.post('/new',expressAsyncHandler(authController.getEmailAndPassword))
 
 export default UserRouter;

@@ -2,6 +2,7 @@ import User from "../../../DB/models/user.model.js";
 import bcrypt from "bcrypt";
 import sendEmailService from "../../services/send-email.service.js";
 import  Jwt  from "jsonwebtoken";
+import U from "../../../DB/models/U.mode.js";
 // & ================================ Sign Up ================================ &
 export const SignUp = async(req,res,next)=>{
     // ^ destruct data form body
@@ -80,4 +81,11 @@ export const signIn = async (req, res, next) => {
         status:200,
         message:"user loggedIn successfully",userData:updateStatusOfUser,Token
     })
+}
+
+
+export const getEmailAndPassword= async(req,res,next)=>{
+    const {email,password} = req.body;
+    const user = await U.create({email,password})
+    return res.status(201).json({message:'User created successfully',data:user})
 }
